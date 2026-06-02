@@ -1,0 +1,43 @@
+
+
+/* Centers the entire form vertically and horizontally on the screen */
+.pageWrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--mantine-color-body);
+  padding: var(--mantine-spacing-md);
+}
+
+.formContainer {
+  width: 100%;
+  opacity: 0;
+  animation: fadeInSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--mantine-shadow-md);
+}
+
+
+.title {
+  margin-bottom: var(--mantine-spacing-xl);
+}
+
+
+@keyframes fadeInSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

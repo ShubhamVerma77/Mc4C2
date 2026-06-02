@@ -1,14 +1,24 @@
 
 
-import { Button } from '@mantine/core'
+
 import './App.css'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Auth from './Auth/Auth'
+import MainLayout from './Layout/MainLayout'
 
 function App() {
 
 
   return (
     <>
-    <Button>Hello Mantine</Button>
+   <BrowserRouter>
+   <Routes>
+    <Route path="/" element={<Auth/>} />
+    <Route path="/Main" element={<MainLayout/>}>
+  
+    </Route>
+   </Routes>
+   </BrowserRouter>
     </>
   )
 }
