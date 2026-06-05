@@ -43,7 +43,7 @@ export function StatsSegments() {
             345,765
           </Text>
           <Text c="teal" className={classes.diff} fz="sm" fw={700}>
-            <span>18%</span>
+            <span>25%</span>
             <IconArrowUpRight size={16} style={{ marginBottom: 4 }} stroke={1.5} />
           </Text>
         </Group>
