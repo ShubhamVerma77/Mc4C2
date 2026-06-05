@@ -11,8 +11,12 @@
   },
   "dependencies": {
     "@mantine/core": "^9.3.0",
+    "@mantine/form": "^9.3.0",
     "@mantine/hooks": "^9.3.0",
+    "@mantinex/mantine-logo": "^2.0.0",
     "@phosphor-icons/react": "^2.1.10",
+    "@tabler/icons-react": "^3.44.0",
+    "dayjs": "^1.11.21",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "react-router-dom": "^7.16.0"

@@ -1,11 +1,18 @@
-import Notify from "../Components/Notification";
-
-
+import { Outlet } from "react-router-dom";
+import { Footer } from "../Components/Footer";
+import { Navbar } from "../Components/Navbar";
+import './Styles/Layout.css';
 
 export default function MainLayout() {
   return (
-  <Notify status="This Page is Under Process"/>
+    <div className="layout">
+      <Navbar />
 
+      <main className="content">
+<Outlet />
+      </main>
 
-  )
+      <Footer />
+    </div>
+  );
 }

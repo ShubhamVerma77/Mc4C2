@@ -1,0 +1,27 @@
+.heading{
+  margin-top: 0px;
+font-size: 30px;
+font-weight: bold;
+text-align: center;
+
+}
+.main{
+  padding: 20px;
+}
+
+.first{
+
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+.first5{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.bottom{
+  margin-bottom: 1.5rem;
+
+}

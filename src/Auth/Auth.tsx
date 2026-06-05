@@ -1,7 +1,7 @@
 import {
   Anchor,
   Button,
-  Checkbox,
+
   Container,
   Group,
   Paper,
@@ -11,7 +11,7 @@ import {
 } from '@mantine/core';
 import classes from './Styles/Auth.module.css';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { data, useNavigate } from 'react-router-dom';
 
 function Auth() {
 
@@ -19,11 +19,18 @@ function Auth() {
     const[formdata,setFormdata]= useState({
         email:"",
         password:""
-    })
+    }
+  )
+
+    
 
 function Authentication(){
     
     if(formdata.email === "Admin" && formdata.password === "Admin@123") {
+   const Data ={
+    name:"Shubham Verma"
+   }
+   sessionStorage.setItem("Data",Data.name);
    alert("Authentication successful!");
     Nevigate("/Main");
     } else {
@@ -47,7 +54,7 @@ function Authentication(){
           
           <TextInput 
             label="Email" 
-            placeholder="you@mantine.dev" 
+            placeholder="you@gmail.com" 
             required 
             radius="md" 
             value={formdata.email}
@@ -65,7 +72,7 @@ function Authentication(){
           />
           
           <Group justify="space-between" mt="lg">
-            <Checkbox label="Remember me" />
+            {/* <Checkbox label="Remember me" /> */}
             <Anchor component="button" size="sm">
               Forgot password?
             </Anchor>

@@ -1,10 +1,13 @@
 import { Notification } from '@mantine/core';
+import type { NotificationProps } from '../Types/User-Defined-Types';
 
-function Notify({status}:{status:string}) {
+function Notify(props: NotificationProps) {
+    if (props.disabled) return null;
   return (
     <Notification title="We notify you that">
-{status}
+      {props.status}
     </Notification>
   );
 }
+  
 export default Notify;
