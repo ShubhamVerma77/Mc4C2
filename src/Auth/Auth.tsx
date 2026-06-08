@@ -11,7 +11,7 @@ import {
 } from '@mantine/core';
 import classes from './Styles/Auth.module.css';
 import { useState } from 'react';
-import { data, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Auth() {
 
