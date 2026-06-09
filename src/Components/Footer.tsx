@@ -1,5 +1,5 @@
 import { Anchor, Container, Group } from '@mantine/core';
-import { MantineLogo } from '@mantinex/mantine-logo';
+import { Text } from '@mantine/core';
 import classes from './Styles/Footer.module.css';
 
 const links = [
@@ -25,7 +25,11 @@ export function Footer() {
   return (
     <div className={classes.footer}>
       <Container className={classes.inner}>
-        <MantineLogo size={28} />
+        <div className={classes.logo}>
+   <img src="/ICon.png" alt="Mc4c2 Logo" style={{ height: 35 }} />
+                 <Text fw={700} size="lg">Mc4c2</Text>
+        </div>
+     
         <Group className={classes.links}>{items}</Group>
       </Container>
     </div>

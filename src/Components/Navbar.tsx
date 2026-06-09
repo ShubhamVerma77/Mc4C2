@@ -1,34 +1,60 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { IconMoon, IconSearch, IconSun, IconUser } from '@tabler/icons-react';
-import { ActionIcon, Autocomplete, Burger, Button, Divider, Drawer, Group, ScrollArea, useComputedColorScheme, useMantineColorScheme, Text } from '@mantine/core';
+import { IconMoon, IconSearch, IconSun, IconUser, IconChevronDown } from '@tabler/icons-react';
+import { ActionIcon, Autocomplete, Burger, Button, Center, Divider, Drawer, Group, ScrollArea, useComputedColorScheme, useMantineColorScheme, Text } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { MantineLogo } from '@mantinex/mantine-logo';
 import classes from './Styles/Navbar.module.css';
-import MarqueeComponenet from './Marquee';
+
 import {
   IconChevronRight,
   IconDots,
-  IconHeart,
+
   IconLogout,
-  IconMessage,
-  IconPlayerPause,
+
   IconSettings,
-  IconStar,
+
   IconSwitchHorizontal,
   IconTrash,
 } from '@tabler/icons-react';
-import {  Avatar, Menu, useMantineTheme } from '@mantine/core';
+import {  Avatar, Menu } from '@mantine/core';
 import cx from 'clsx';
 const links = [
   { link: '/Main/Home', label: 'Dashboard' },
-  { link: '/pricing', label: 'Pricing' },
-  { link: '/learn', label: 'Features' },
-  { link: '/Main/About', label: 'Community' },
+  {
+    link: '#1',
+    label: 'Master',
+    links: [
+      { link: '/docs', label: 'Team' },
+      { link: '/resources', label: 'User' },
+      { link: '/community', label: 'Technology' },
+    
+    ],
+  },
+ {
+    link: '#2',
+    label: 'Projects',
+    links: [
+      { link: '/docs', label: 'Add Projects' },
+      { link: '/resources', label: 'View Projects' },
+
+    
+    ],
+  },
+ {
+    link: '#3',
+    label: 'Tasks',
+    links: [
+      { link: '/docs', label: 'Add Tasks' },
+      { link: '/resources', label: 'View Tasks' }
+
+    
+    ],
+  },
+  { link: '/Main/About', label: 'About' },
 ];
 
 export function Navbar() {
-    const theme = useMantineTheme();
+
   const [opened, { toggle, close }] = useDisclosure(false);
   const { setColorScheme } = useMantineColorScheme();
   const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true });
@@ -38,15 +64,43 @@ export function Navbar() {
     setUsername(sessionStorage.getItem('Data'));
   }, []);
 
-  const items = links.map((link) => (
-    <Link
-      key={link.label}
-      to={link.link}
-      className={classes.link}
-    >
-      {link.label}
-    </Link>
-  ));
+  const items = links.map((link) => {
+    const menuItems = link.links?.map((item) => (
+      <Menu.Item 
+        key={item.label} 
+        component={Link} 
+        to={item.link}
+      >
+        {item.label}
+      </Menu.Item>
+    ));
+
+    if (menuItems) {
+      return (
+        <Menu key={link.label} trigger="hover" transitionProps={{ exitDuration: 0 }} withinPortal>
+          <Menu.Target>
+            <Link
+              to={link.link}
+              className={classes.link}
+              onClick={(event) => event.preventDefault()}
+            >
+              <Center>
+                <span style={{ marginRight: '5px' }}>{link.label}</span>
+                <IconChevronDown size={14} stroke={1.5} />
+              </Center>
+            </Link>
+          </Menu.Target>
+          <Menu.Dropdown>{menuItems}</Menu.Dropdown>
+        </Menu>
+      );
+    }
+
+    return (
+      <Link key={link.label} to={link.link} className={classes.link}>
+        {link.label}
+      </Link>
+    );
+  });
 
   return (
     
@@ -60,7 +114,10 @@ export function Navbar() {
             hiddenFrom="sm"
             aria-label="Toggle navigation"
           />
-          <MantineLogo size={28} />
+          <Group gap="xs">
+            <img src="/ICon.png" alt="Mc4c2 Logo" style={{ height: 35 }} />
+            <Text fw={700} size="lg">Mc4c2</Text>
+          </Group>
         </Group>
 
         <Group>
@@ -123,19 +180,7 @@ export function Navbar() {
 
           <Menu.Divider />
 
-          <Menu.Item leftSection={<IconHeart size={16} stroke={1.5} color={theme.colors.red[6]} />}>
-            Liked posts
-          </Menu.Item>
-          <Menu.Item
-            leftSection={<IconStar size={16} stroke={1.5} color={theme.colors.yellow[6]} />}
-          >
-            Saved posts
-          </Menu.Item>
-          <Menu.Item
-            leftSection={<IconMessage size={16} stroke={1.5} color={theme.colors.blue[6]} />}
-          >
-            Your comments
-          </Menu.Item>
+          
 
           <Menu.Label>Settings</Menu.Label>
           <Menu.Item leftSection={<IconSettings size={16} stroke={1.5} />}>
@@ -149,9 +194,7 @@ export function Navbar() {
           <Menu.Divider />
 
           <Menu.Label>Danger zone</Menu.Label>
-          <Menu.Item leftSection={<IconPlayerPause size={16} stroke={1.5} />}>
-            Pause subscription
-          </Menu.Item>
+      
           <Menu.Item color="red" leftSection={<IconTrash size={16} stroke={1.5} />}>
             Delete account
           </Menu.Item>
@@ -181,7 +224,7 @@ export function Navbar() {
           {items}
         </ScrollArea>
       </Drawer>
-    <MarqueeComponenet></MarqueeComponenet>
+
 
     </header>
 

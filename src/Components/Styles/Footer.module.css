@@ -20,3 +20,8 @@
     margin-top: var(--mantine-spacing-md);
   }
 }
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
