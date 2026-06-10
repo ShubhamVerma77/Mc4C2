@@ -24,9 +24,9 @@ const links = [
     link: '#1',
     label: 'Master',
     links: [
-      { link: '/docs', label: 'Team' },
-      { link: '/resources', label: 'User' },
-      { link: '/community', label: 'Technology' },
+      { link: '/docs', label: 'Manage Team' },
+      // { link: '/resources', label: 'User' },
+      { link: '/Main/Technology', label: 'Manage Technology' },
     
     ],
   },
