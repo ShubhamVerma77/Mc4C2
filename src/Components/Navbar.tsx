@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { IconMoon, IconSearch, IconSun, IconUser, IconChevronDown } from '@tabler/icons-react';
 import { ActionIcon, Autocomplete, Burger, Button, Center, Divider, Drawer, Group, ScrollArea, useComputedColorScheme, useMantineColorScheme, Text } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
@@ -18,6 +18,8 @@ import {
 } from '@tabler/icons-react';
 import {  Avatar, Menu } from '@mantine/core';
 import cx from 'clsx';
+import Swal from 'sweetalert2';
+
 const links = [
   { link: '/Main/Home', label: 'Dashboard' },
   {
@@ -54,11 +56,42 @@ const links = [
 ];
 
 export function Navbar() {
+const Nevigate = useNavigate();
 
   const [opened, { toggle, close }] = useDisclosure(false);
   const { setColorScheme } = useMantineColorScheme();
   const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true });
   const [username, setUsername] = useState<string | null>(null);
+
+  function Logout(){
+    sessionStorage.clear();
+  Swal.fire({
+  title: "Are you sure?",
+  text: "You won't be able to revert this!",
+  icon: "warning",
+      theme: 'auto',
+
+  showCancelButton: true,
+  confirmButtonColor: "#3085d6",
+  cancelButtonColor: "#d33",
+  confirmButtonText: "Logout !"
+}).then((result) => {
+  if (result.isConfirmed){
+Swal.fire({
+    title: "Logout!",
+    text: "Logout Successfully",
+    icon: "success",
+      theme: 'dark'
+
+  }
+  
+);
+    Nevigate("/", { replace: true });
+  } 
+
+});
+
+  }
 
   useEffect(() => {
     setUsername(sessionStorage.getItem('Data'));
@@ -189,7 +222,7 @@ export function Navbar() {
           <Menu.Item leftSection={<IconSwitchHorizontal size={16} stroke={1.5} />}>
             Change account
           </Menu.Item>
-          <Menu.Item leftSection={<IconLogout size={16} stroke={1.5} />}>Logout</Menu.Item>
+          <Menu.Item leftSection={<IconLogout size={16} stroke={1.5} />} onClick={()=>Logout()}>Logout</Menu.Item>
 
           <Menu.Divider />
 

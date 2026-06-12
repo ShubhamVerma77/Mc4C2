@@ -12,6 +12,7 @@ import {
 import classes from './Styles/Auth.module.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2'
 
 function Auth() {
 
@@ -31,7 +32,13 @@ function Authentication(){
     name:"Shubham Verma"
    }
    sessionStorage.setItem("Data",Data.name);
-   alert("Authentication successful!");
+ Swal.fire({
+  title: "Authentication Done",
+  icon: "success",
+      theme: 'auto',
+
+  draggable: true
+});
     Nevigate("/Main");
     } else {
         alert("Authentication failed. Please check your email and password.");
